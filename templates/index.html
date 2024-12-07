@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Headings Checker</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #e8d8c4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          color: black;
+          width: 100%;
+          height: 100vh;
+          background-color: #e8d8c4;
+          background-position: center;
+          background-size: cover;
+        }
+
+        .container h1 {
+          font-size: 70px;
+          margin-top: 100px;
+          background: -webkit-linear-gradient(pink, darkblue);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .navbar {
+            width: 85%;
+            margin: auto;
+            padding: 35px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+          
+        .logo {
+            width: 300px;
+            cursor: pointer;
+          }  
+          .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+          }
+          
+          .navbar ul li {
+            margin: 0 20px;
+            margin-top: 5px;
+            position: relative;
+          }
+          
+          .navbar ul li a {
+            text-decoration: none;
+            color: black;
+            text-transform: uppercase;
+            position: relative;
+            padding-bottom: 10px;
+            transition: color 0.2s, width 0.2s;
+            display: inline-block;
+          }
+          
+          .navbar ul li a::after {
+            content: '';
+            height: 3px;
+            width: 0%;
+            background: #009688;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transition: width 0.2s ease;
+          }
+          
+          .navbar ul li a:hover {
+            color: #009688;
+          }
+          
+          .navbar ul li a:hover::after {
+            width: 100%;
+          }
+          
+          .content {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: black;
+          }
+          
+          .content h1 {
+            font-size: 70px;
+            margin-top: 100px;
+            background: -webkit-linear-gradient(pink, darkblue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          
+          .content p {
+            padding: auto;
+            margin: 20px auto; /* Tambahkan margin untuk paragraf */
+            font-weight: 100;
+            line-height: 25px;
+          }
+          
+          form {
+            margin-top: 30px;
+          }
+          
+          .form-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          input[type="text"] {
+            padding: 12px;
+            margin-right: 10px; /* Tambahkan jarak antara input dan tombol */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            width: 60%;
+            max-width: 400px;
+          }
+          
+          button {
+            width: 200px;
+            padding: 15px 0;
+            text-align: center;
+            border-radius: 35px;
+            font-weight: bold;
+            border: 2px solid #009688;
+            background: transparent;
+            color: black;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+          }
+          
+        button span {
+            background: #009688;
+            height: 100%;
+            width: 0%;
+            border-radius: 25px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            
+          }
+          
+        button:hover span {
+            width: 100%;
+          }
+          
+        button:hover {
+            border: none;
+          }
+          
+        .heading {
+            text-align: left;
+            margin: 10px auto;
+            max-width: 600px;
+          }
+          
+        .download-button {
+            margin-top: 20px;
+            text-align: center;
+          }      
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+       form {
+          margin-top: 0px;
+        }
+
+      .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+        label {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+  button {
+      width: 200px;
+      padding: 15px 0;
+      text-align: center;
+      border-radius: 35px;
+      font-weight: bold;
+      border: 2px solid #009688;
+      background: transparent;
+      color: black;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+button span {
+  background: #009688;
+  height: 100%;
+  width: 0%;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  
+}
+
+button:hover span {
+  width: 100%;
+}
+
+button:hover {
+  border: none;
+}
+.heading-text {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.h1-indent { padding-left: 20px; }
+.h2-indent { padding-left: 40px; }
+.h3-indent { padding-left: 60px; }
+.h4-indent { padding-left: 80px; }
+.h5-indent { padding-left: 100px; }
+.h6-indent { padding-left: 120px; }
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+th {
+  background-color: #009688;
+  color: white;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.recommendation {
+  color: #e74c3c;
+  font-style: italic;
+}
+
+.valid {
+  color: #27ae60;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+      <div class="navbar">
+        <img src="{{ url_for('static', filename='logo1.png') }}" class="logo" alt="Logo">
+        <ul>
+          <li><a href="/index.html">Home</a></li> <!-- Perbaikan path menuju index.html -->
+          <li><a href="index.html">Headings Checker</a></li>
+          <li><a href="/check_alt">Img Alt Tag Checker</a></li> <!-- Perbaikan path menuju alttag.html -->
+    
+        </ul>
+      </div>
+            <h1>Headings Checker</h1>
+            <form method="POST">
+                <label for="url">Enter URL:</label>
+                <input type="text" id="url" name="url" required>
+                <button type="submit" formaction="/"><span></span>Check Headings</button>
+            </form>
+            
+            {% if headings %}
+            <h2>Headings Found:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Page</th>
+                        <th>Heading Structure</th>
+                        <th>Recommendation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set current_page = namespace(h1_count=0, last_level=0) %}
+                    {% for heading in headings %}
+                        <tr>
+                            <td>{{ url }}</td>
+                            <td class="{{ heading.name }}-indent">
+                                <strong>{{ heading.name }}</strong>: {{ heading.get_text() }}
+                            </td>
+                            <td>
+                                {% if heading.name == 'h1' %}
+                                    {% set current_page.h1_count = current_page.h1_count + 1 %}
+                                    {% if current_page.h1_count > 1 %}
+                                        <span class="recommendation">Multiple H1 tags detected. Each page should have exactly one H1 tag.</span>
+                                    {% else %}
+                                        <span class="valid">Valid H1 placement</span>
+                                    {% endif %}
+                                {% elif heading.name == 'h2' %}
+                                    {% if current_page.h1_count == 0 %}
+                                        <span class="recommendation">H2 found before H1. Add an H1 tag first.</span>
+                                    {% else %}
+                                        <span class="valid">Valid H2 placement</span>
+                                    {% endif %}
+                                {% elif heading.name == 'h3' %}
+                                    {% if not headings|selectattr('name', 'equalto', 'h2')|list %}
+                                        <span class="recommendation">H3 found without preceding H2. Add an H2 tag first.</span>
+                                    {% else %}
+                                        <span class="valid">Valid H3 placement</span>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="download-button">
+                <form method="POST" action="/download_pdf">
+                    <input type="hidden" name="url" value="{{ url }}">
+                    <button type="submit"><span></span>Download PDF</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Alt Tag Checker</title>
+    <style>
+      body {
+          font-family: sans-serif;
+          background-color: #e8d8c4;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+      }
+      .container {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: black;
+        width: 100%;
+        height: 100vh;
+        background-color: #e8d8c4;
+        background-position: center;
+        background-size: cover;
+        overflow-y: auto;
+      }
+
+      .container h1 {
+        font-size: 70px;
+        margin-top: 100px;
+        background: -webkit-linear-gradient(pink, darkblue);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .navbar {
+          width: 85%;
+          margin: auto;
+          padding: 35px 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        
+      .logo {
+          width: 300px;
+          cursor: pointer;
+        }  
+      .navbar ul {
+          list-style: none;
+          display: flex;
+          margin: 0;
+          padding: 0;
+        }
+        
+      .navbar ul li {
+          margin: 0 20px;
+          margin-top: 5px;
+          position: relative;
+        }
+        
+      .navbar ul li a {
+          text-decoration: none;
+          color: black;
+          text-transform: uppercase;
+          position: relative;
+          padding-bottom: 10px;
+          transition: color 0.2s, width 0.2s;
+          display: inline-block;
+        }
+        
+      .navbar ul li a::after {
+          content: '';
+          height: 3px;
+          width: 0%;
+          background: #009688;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          transition: width 0.2s ease;
+        }
+        
+      .navbar ul li a:hover {
+          color: #009688;
+        }
+        
+      .navbar ul li a:hover::after {
+          width: 100%;
+        }
+        
+      .content {
+          width: 100%;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          text-align: center;
+          color: black;
+        }
+        
+      form {
+          margin-top: 0px;
+        }
+        
+      .form-group {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        
+      label {
+          margin-bottom: 10px;
+          color: #555;
+      }
+        
+      input[type="text"] {
+          padding: 10px;
+          margin-bottom: 20px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 60%;
+          max-width: 400px;
+      }
+        
+      button {
+          width: 200px;
+          padding: 15px 0;
+          text-align: center;
+          border-radius: 35px;
+          font-weight: bold;
+          border: 2px solid #009688;
+          background: transparent;
+          color: black;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+      }
+        
+      button span {
+          background: #009688;
+          height: 100%;
+          width: 0%;
+          border-radius: 25px;
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          z-index: -1;
+      }
+        
+      button:hover span {
+          width: 100%;
+      }
+        
+      button:hover {
+          border: none;
+      }
+
+      .download-button {
+          margin-top: 20px;
+          text-align: center;
+      }
+
+      table {
+        width: 80%; /* Ubah lebar tabel */
+        border-collapse: collapse;
+        margin: 20px auto; /* Ubah margin */
+        background-color: white; /* Tambahkan background color */
+        box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Tambahkan shadow untuk estetika */
+    }
+
+    .table-wrapper {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+  }
+    
+      table.center {
+          margin-left: auto; 
+          margin-right: auto;
+      }
+
+      th, td {
+          border: 1px solid #000;
+          padding: 12px;
+          text-align: center;
+          word-wrap: break-word;
+      }
+
+      th {
+        background-color: #009688;
+        color: white;
+        font-weight: bold;
+      }
+
+      td:nth-child(1) {
+          max-width: 200px;
+          overflow-wrap: break-word;
+          background-color: #f9f9f9;
+      }
+      .image-preview {
+          max-width: 150px;
+          max-height: 150px;
+      }
+      .recommended-alt {
+        color: #27ae60;
+        font-weight: bold;
+      }
+      .current-alt {
+          color: red;
+      }
+  </style>
+  
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <img src="{{ url_for('static', filename='logo1.png') }}" class="logo" alt="Logo">
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/">Headings Checker</a></li>
+                <li><a href="/check_alt">Img Alt Tag Checker</a></li>
+            </ul>
+        </div>
+        <h1>Image Alt Tag Checker</h1>
+        <form method="POST">
+            <label for="url">Enter URL:</label>
+            <input type="text" id="url" name="url" required>
+            <button type="submit" formaction="/check_alt"><span></span>Check Alt Attributes</button>
+        </form>
+
+        {% if alt_attributes %}
+            <h2>Image Alt Attributes Found:</h2>
+            <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Preview</th>
+                        <th>Full Src</th>
+                        <th>Current Alt Text</th>
+                        <th>Recommended Alt Text</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for img in alt_attributes %}
+                        <tr>
+                            <td>
+                                {% if img['src'].startswith('http') %}
+                                    <img src="{{ img['src'] }}" alt="{{ img['alt'] }}" class="image-preview">
+                                {% else %}
+                                    <img src="{{ url }}{{ img['src'] }}" alt="{{ img['alt'] }}" class="image-preview">
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if img['src'].startswith('http') %}
+                                    <a href="{{ img['src'] }}" target="_blank">{{ img['src'] }}</a>
+                                {% else %}
+                                    <a href="{{ url }}{{ img['src'] }}" target="_blank">{{ url }}{{ img['src'] }}</a>
+                                {% endif %}
+                            </td>
+                            <td class="current-alt">
+                                {{ img['alt'] if img['alt'] else "No alt text" }}
+                            </td>
+                            <td class="recommended-alt">
+                                {% if img['alt'] and img['alt'] != "alt default" %}
+                                    {{ img['alt'] }}
+                                {% elif 'whatsapp' in img['src'].lower() %}
+                                    whatsapp-logo
+                                {% elif 'logo' in img['src'].lower() %}
+                                    logo-{{ img['src'].split('/')[-1].split('.')[0] }}
+                                {% elif 'icon' in img['src'].lower() %}
+                                    icon-{{ img['src'].split('/')[-1].split('.')[0] }}
+                                {% elif 'facebook' in img['src'].lower() %}
+                                    facebook-logo
+                                {% elif 'twitter' in img['src'].lower() %}
+                                    twitter-logo
+                                {% elif 'instagram' in img['src'].lower() %}
+                                    instagram-logo
+                                {% else %}
+                                    image-{{ img['src'].split('/')[-1].split('.')[0] }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        {% endif %}
+    </div>
+</body>
+</html>
