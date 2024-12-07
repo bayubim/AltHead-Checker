@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.banner {
+  width: 100%;
+  height: 100vh;
+  background-color: #e8d8c4;
+  background-position: center;
+  background-size: cover;
+}
+
+.navbar {
+  width: 85%;
+  margin: auto;
+  padding: 35px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 300px;
+  cursor: pointer;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  margin: 0 20px;
+  margin-top: 5px;
+  position: relative;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 10px;
+  transition: color 0.2s, width 0.2s;
+  display: inline-block;
+}
+
+.navbar ul li a::after {
+  content: '';
+  height: 3px;
+  width: 0%;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: width 0.2s ease;
+}
+
+.navbar ul li a:hover {
+  color: #009688;
+}
+
+.navbar ul li a:hover::after {
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: black;
+}
+
+.content h1 {
+  font-size: 70px;
+  margin-top: 100px;
+  background: -webkit-linear-gradient(pink, darkblue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content h2 {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.content p {
+  margin: 30px auto 40px auto;
+  font-weight: 100;
+  line-height: 25px;
+  max-width: 800px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+input[type="text"] {
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  width: 200px;
+  padding: 15px 0;
+  text-align: center;
+  border-radius: 35px;
+  font-weight: bold;
+  border: 2px solid #009688;
+  background: transparent;
+  color: black;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+button span {
+  background: #009688;
+  height: 100%;
+  width: 0%;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: width 0.5s;
+}
+
+button:hover span {
+  width: 100%;
+}
+
+button:hover {
+  border: none;
+}
+
+#results {
+  margin-top: 20px;
+  text-align: left;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+th {
+  background-color: #007BFF;
+  color: white;
+  font-weight: 700;
+}
+
+td:nth-child(1) {
+  max-width: 250px;
+  overflow-wrap: break-word;
+}
+
